@@ -21,7 +21,7 @@ from flask import url_for, current_app
 from werkzeug.local import LocalProxy
 
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 __all__ = ('FileRev',)
 
@@ -48,6 +48,9 @@ class FileRev(object):
 
     def init_app(self, app):
         # app.context_processor(revved_url_for)
+        global url_for
+        url_for = app.jinja_env.globals['url_for']
+
         app.jinja_env.globals['url_for'] = _revved_url_for
         app.filerev = self
 
@@ -63,7 +66,7 @@ class FileRev(object):
                 filerevs = yaml.load(filerevs_fh)
                 app.config['FILEREV'] = filerevs
         except IOError:
-            logger.warning('FILEREV not set.')
+            logger.warning('FILEREV not set')
             app.config['FILEREV'] = {}
 
 

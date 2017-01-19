@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(
-    name='flask-filerev',
+    name='Flask-FileRev',
     version='0.1.1',
     description='Flask-FileRev',
     author='Boris Raicheff',

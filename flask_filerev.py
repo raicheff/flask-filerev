@@ -21,11 +21,6 @@ from flask import url_for, current_app
 from werkzeug.local import LocalProxy
 
 
-__version__ = '0.1.1'
-
-__all__ = ('FileRev',)
-
-
 logger = logging.getLogger('Flask-FileRev')
 
 

@@ -13,18 +13,15 @@ https://github.com/richardbolt/grunt-filerev-assets
 """
 
 
-import logging
 import os
+import warnings
 import yaml
 
 from flask import url_for, current_app
 from werkzeug.local import LocalProxy
 
 
-logger = logging.getLogger('Flask-FileRev')
-
-
-assets = LocalProxy(lambda: current_app.config['FILEREV'])
+assets = LocalProxy(lambda: current_app.config.get('FILEREV'))
 
 
 class FileRev(object):
@@ -61,7 +58,7 @@ class FileRev(object):
                 filerevs = yaml.load(filerevs_fh)
                 app.config['FILEREV'] = filerevs
         except IOError:
-            logger.warning('FILEREV not set')
+            warnings.warn('FILEREV not set', RuntimeWarning, stacklevel=2)
             app.config['FILEREV'] = {}
 
 

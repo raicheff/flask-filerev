@@ -13,9 +13,9 @@ https://github.com/richardbolt/grunt-filerev-assets
 """
 
 
+import json
 import os
 import warnings
-import yaml
 
 from flask import url_for, current_app
 from werkzeug.local import LocalProxy
@@ -55,7 +55,7 @@ class FileRev(object):
         filerevs_path = os.path.join(app.instance_path, app.config['FILEREV_MAP'])
         try:
             with app.open_resource(filerevs_path) as filerevs_fh:
-                filerevs = yaml.load(filerevs_fh)
+                filerevs = json.load(filerevs_fh)
                 app.config['FILEREV'] = filerevs
         except IOError:
             warnings.warn('FILEREV not set', RuntimeWarning, stacklevel=2)

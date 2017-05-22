@@ -52,9 +52,8 @@ class FileRev(object):
         app.context_processor(inject_assets)
 
         # TODO
-        resource = os.path.join(app.instance_path, app.config.get('FILEREV_MAP'))
         try:
-            with app.open_resource(resource, mode='r') as f:
+            with app.open_resource(app.config.get('FILEREV_MAP'), mode='r') as f:
                 filerevs = json.load(f)
                 app.config['FILEREV'] = filerevs
         except IOError:

@@ -57,7 +57,7 @@ class FileRev(object):
                 filerevs = json.load(f)
                 app.config['FILEREV'] = filerevs
         except IOError:
-            warnings.warn('FILEREV not set', RuntimeWarning, stacklevel=2)
+            warnings.warn('FILEREV_MAP not set', RuntimeWarning, stacklevel=2)
             app.config['FILEREV'] = {}
 
 

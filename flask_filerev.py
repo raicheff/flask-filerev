@@ -52,10 +52,10 @@ class FileRev(object):
         app.context_processor(inject_assets)
 
         # TODO
-        filerevs_path = os.path.join(app.instance_path, app.config['FILEREV_MAP'])
+        resource = os.path.join(app.instance_path, app.config.get('FILEREV_MAP'))
         try:
-            with app.open_resource(filerevs_path) as filerevs_fh:
-                filerevs = json.loads(filerevs_fh.read().decode())
+            with app.open_resource(resource, mode='r') as f:
+                filerevs = json.load(f)
                 app.config['FILEREV'] = filerevs
         except IOError:
             warnings.warn('FILEREV not set', RuntimeWarning, stacklevel=2)

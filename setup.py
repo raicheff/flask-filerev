@@ -1,5 +1,5 @@
 #
-# Flask-FileRev
+# Flask-Rev
 #
 # Copyright (C) 2017 Boris Raicheff
 # All rights reserved
@@ -10,14 +10,13 @@ from setuptools import setup
 
 
 setup(
-    name='Flask-FileRev',
-    version='0.1.0',
-    description='Flask-FileRev',
+    name='Flask-Rev',
+    version='0.2.0',
+    description='Flask-Rev',
     author='Boris Raicheff',
     author_email='b@raicheff.com',
-    url='https://github.com/raicheff/flask-filerev',
-    install_requires=('flask', 'pyyaml'),
-    py_modules=('flask_filerev',),
+    url='https://github.com/raicheff/flask-rev',
+    py_modules=('flask_rev',),
 )
 
 

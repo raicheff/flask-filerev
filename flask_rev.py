@@ -1,5 +1,5 @@
 #
-# Flask-FileRev
+# Flask-Rev
 #
 # Copyright (C) 2017 Boris Raicheff
 # All rights reserved
@@ -14,7 +14,6 @@ https://github.com/richardbolt/grunt-filerev-assets
 
 
 import json
-import os
 import warnings
 
 from flask import url_for, current_app
@@ -24,11 +23,11 @@ from werkzeug.local import LocalProxy
 assets = LocalProxy(lambda: current_app.config.get('FILEREV'))
 
 
-class FileRev(object):
+class Rev(object):
     """
-    Flask-FileRev
+    Flask-Rev
 
-    Refer to http://flask-filerev.readthedocs.org for more details.
+    Refer to http://flask-rev.readthedocs.io for more details.
 
     :param app: Flask app to initialize with. Defaults to `None`
     """
@@ -53,11 +52,11 @@ class FileRev(object):
 
         # TODO
         try:
-            with app.open_resource(app.config.get('FILEREV_MAP'), mode='r') as f:
+            with app.open_resource(app.config.get('REV_MANIFEST'), mode='r') as f:
                 filerevs = json.load(f)
                 app.config['FILEREV'] = filerevs
         except IOError:
-            warnings.warn('FILEREV_MAP not set', RuntimeWarning, stacklevel=2)
+            warnings.warn('REV_MANIFEST not set', RuntimeWarning, stacklevel=2)
             app.config['FILEREV'] = {}
 
 
